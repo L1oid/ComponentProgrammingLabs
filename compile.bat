@@ -1,0 +1,1 @@
+g++ Main.cpp Server.cpp -o run.exe
