@@ -1,14 +1,15 @@
 #ifndef SERVER_H
 #define SERVER_H
-class MyServer
+#include "IServer.h"
+class Server : public IServer
 {
 private:
     int a;
     int b;
 public:
-    MyServer();
-    MyServer(int a_p, int b_p);
-    ~MyServer();
+    Server();
+    Server(int a_p, int b_p);
+    ~Server();
     int Func();
 };
 #endif

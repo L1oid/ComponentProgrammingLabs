@@ -1,1 +1,5 @@
-g++ Main.cpp Server.cpp -o run.exe
+echo off
+
+"C:\Program Files\CodeBlocks\MinGW\bin\g++" Server.cpp IServer.cpp Main.cpp -o run.exe
+
+PAUSE

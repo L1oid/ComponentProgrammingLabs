@@ -1,10 +1,12 @@
 #include <iostream>
-#include "Server.h"
+#include <stdlib.h>
+#include "IServer.h"
 using namespace std;
 
 int main()
 {
-    MyServer* S = new MyServer(2, 3);
+    IServer* S = CreateInstance(3, 2);
     cout << S->Func() << endl;
     delete S;
+    system("pause");
 }
