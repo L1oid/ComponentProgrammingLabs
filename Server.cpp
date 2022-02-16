@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Server.h"
-#include "IServer.h"
 using namespace std;
 
 Server::Server()
@@ -20,4 +19,9 @@ Server::~Server() {};
 int Server::Func()
 {
     return a + b;
+}
+
+int Server::Func2()
+{
+    return 2 * a + b;
 }

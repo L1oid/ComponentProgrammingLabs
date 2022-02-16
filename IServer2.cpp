@@ -1,9 +1,9 @@
 #include <iostream>
-#include "IServer.h"
+#include "IServer2.h"
 #include "Server.h"
 using namespace std;
 
-IServer* CreateInstance(int x, int y)
+IServer2* CreateInstance2(int x, int y)
 {
     return new Server(x, y);
 }
