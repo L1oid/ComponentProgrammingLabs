@@ -8,20 +8,14 @@ Server::Server()
     b = 0;
 }
 
-Server::Server(int a_p, int b_p)
-{
-    a = a_p;
-    b = b_p;
-}
-
 Server::~Server() {};
 
 int Server::Func()
 {
-    return a + b;
+    return 1;
 }
 
 int Server::Func2()
 {
-    return 2 * a + b;
+    return 2;
 }

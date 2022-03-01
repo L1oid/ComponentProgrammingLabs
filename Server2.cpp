@@ -2,26 +2,15 @@
 #include "Server2.h"
 using namespace std;
 
-Server::Server()
+Server2::Server2()
 {
     a = 0;
     b = 0;
 }
 
-Server::Server(int a_p, int b_p)
-{
-    a = a_p;
-    b = b_p;
-}
+Server2::~Server2() {};
 
-Server::~Server() {};
-
-int Server::Func()
+int Server2::Func2()
 {
-    return a + b;
-}
-
-int Server::Func2()
-{
-    return 2 * a + b;
+    return 3;
 }

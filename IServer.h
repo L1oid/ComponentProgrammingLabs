@@ -5,6 +5,4 @@ class IServer
 public:
     virtual int Func() = 0;
 };
-
-IServer* CreateInstance(int x, int y);
 #endif

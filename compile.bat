@@ -1,6 +1,6 @@
 echo off
 
-"C:\Program Files\CodeBlocks\MinGW\bin\g++" Server.cpp IServer.cpp IServer2.cpp Main.cpp -c 
-"C:\Program Files\CodeBlocks\MinGW\bin\g++" Server.o IServer.o IServer2.o Main.o -o run.exe
+g++ Server.cpp IManager.cpp Main.cpp -c 
+g++ Server.o IManager.o Main.o -o run.exe
 
 PAUSE

@@ -9,7 +9,6 @@ private:
     int b;
 public:
     Server();
-    Server(int a_p, int b_p);
     ~Server();
     int Func();
     int Func2();
