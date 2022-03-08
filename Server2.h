@@ -1,7 +1,7 @@
-#ifndef SERVER_H
-#define SERVER_H
-#include "IServer2.h"
-class Server2 : public IServer2
+#ifndef SERVER2_H
+#define SERVER2_H
+#include "IY.h"
+class Server2 : public IY
 {
 private:
     int a;
@@ -9,6 +9,7 @@ private:
 public:
     Server2();
     ~Server2();
-    int Func2();
+    virtual int Func2();
+    int QueryInterface(int, void**);
 };
 #endif

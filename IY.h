@@ -1,6 +1,7 @@
-#ifndef ISERVER2_H
-#define ISERVER2_H
-class IServer2
+#ifndef IY_H
+#define IY_H
+#include "IUnknown.h"
+class IY : public IUnknown
 {
 public:
     virtual int Func2() = 0;

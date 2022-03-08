@@ -1,8 +1,10 @@
-#ifndef ISERVER_H
-#define ISERVER_H
-class IServer
+#ifndef IX_H
+#define IX_H
+#include "IUnknown.h"
+class IX : public IUnknown
 {
 public:
-    virtual int Func() = 0;
+    virtual int Func1() = 0;
+    virtual int Func2() = 0;
 };
 #endif

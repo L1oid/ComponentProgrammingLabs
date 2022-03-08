@@ -1,8 +1,9 @@
 #ifndef IMANAGER_H
 #define IMANAGER_H
-#include "IServer.h"
-#include "IServer2.h"
+#include "IUnknown.h"
+#include "IX.h"
+#include "IY.h"
 #include "Server.h"
 #include "Server2.h"
-IServer* CreateInstance();
+IUnknown* CreateInstance(int);
 #endif
