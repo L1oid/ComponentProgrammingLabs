@@ -2,6 +2,7 @@
 #define SERVER_H
 #include "IX.h"
 #include "IY.h"
+#include "OBJBASE.h"
 class Server : public IX, public IY
 {
 private:
@@ -12,6 +13,6 @@ public:
     ~Server();
     virtual int Func1();
     virtual int Func2();
-    int QueryInterface(int, void**);
+    HRESULT_ QueryInterface(int, void**);
 };
 #endif

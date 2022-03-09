@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Server2.h"
+#include "OBJBASE.h"
 using namespace std;
 
 Server2::Server2()
@@ -15,7 +16,7 @@ int Server2::Func2()
     return 22;
 }
 
-int Server2::QueryInterface(int IID, void** ppv)
+HRESULT_ Server2::QueryInterface(IID_ IID, void** ppv)
 {
     switch (IID)
     {

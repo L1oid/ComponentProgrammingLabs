@@ -1,8 +1,9 @@
 #ifndef IUNKNOWN_H
 #define IUNKNOWN_H
+#include "OBJBASE.h"
 class IUnknown
 {
 public:
-    virtual int QueryInterface(int, void**) = 0;
+    virtual HRESULT_ QueryInterface(IID_, void**) = 0;
 };
 #endif

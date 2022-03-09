@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Server.h"
+#include "OBJBASE.h"
 using namespace std;
 
 Server::Server()
@@ -20,9 +21,9 @@ int Server::Func2()
     return 12;
 }
 
-int Server::QueryInterface(int IID, void** ppv) 
+HRESULT_ Server::QueryInterface(IID_ IID, void** ppv) 
 {
-    switch (IID) 
+    switch (IID)
     {
     case 0:
         cout << "Server.QueryInterface: return IUnknown" << endl;

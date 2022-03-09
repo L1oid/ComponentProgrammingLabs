@@ -5,5 +5,6 @@
 #include "IY.h"
 #include "Server.h"
 #include "Server2.h"
-IUnknown* CreateInstance(int);
+#include "OBJBASE.h"
+HRESULT_ CreateInstance(CLSID_, IID_, void**);
 #endif

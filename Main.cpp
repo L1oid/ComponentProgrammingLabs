@@ -1,12 +1,12 @@
 #include <iostream>
 #include "IManager.h"
+#include "OBJBASE.h"
 using namespace std;
 
 int main()
 {
-    IUnknown* pIUnknown = CreateInstance(1);
     IX* pIX = NULL;
-    int result = pIUnknown->QueryInterface(1, (void**)&pIX);
+    HRESULT_ result = CreateInstance(CLSID_SERVER, IID_IX, (void**)&pIX);
     if (result == 0)
     {
         cout << pIX->Func1() << endl;
