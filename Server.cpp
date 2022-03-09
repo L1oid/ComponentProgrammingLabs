@@ -12,12 +12,12 @@ Server::~Server() {};
 
 int Server::Func1()
 {
-    return 1;
+    return 11;
 }
 
 int Server::Func2()
 {
-    return 2;
+    return 12;
 }
 
 int Server::QueryInterface(int IID, void** ppv) 
@@ -25,23 +25,19 @@ int Server::QueryInterface(int IID, void** ppv)
     switch (IID) 
     {
     case 0:
-        cout << "ServerQueryInterface: return IUnknown" << endl;
-        system("pause");
+        cout << "Server.QueryInterface: return IUnknown" << endl;
         *ppv = (IUnknown*)(IX*)ppv;
         break;
     case 1:
-        cout << "ServerQueryInterface: return IX" << endl;
-        system("pause");
+        cout << "Server.QueryInterface: return IX" << endl;
         *ppv = (IX*)this;
         break;
     case 2:
-        cout << "ServerQueryInterface: return IY" << endl;
-        system("pause");
+        cout << "Server.QueryInterface: return IY" << endl;
         *ppv = (IY*)this;
         break;
     default:
-        cout << "ServerQueryInterface: Invalid interface" << endl;
-        system("pause");
+        cout << "Server.QueryInterface: Invalid interface" << endl;
         *ppv = NULL;
         return 1;
     }

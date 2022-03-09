@@ -7,13 +7,14 @@ int main()
     IUnknown* pIUnknown = CreateInstance(1);
     IX* pIX = NULL;
     int result = pIUnknown->QueryInterface(1, (void**)&pIX);
-    if (result != 0)
+    if (result == 0)
+    {
+        cout << pIX->Func1() << endl;
+    }
+    else
     {
         cout << "Warning" << endl;
-        return 0;
-        system("pause");
     }
-    cout << pIX->Func1();
-    return 0;
     system("pause");
+    return 0;
 }
