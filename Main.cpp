@@ -5,16 +5,19 @@ using namespace std;
 
 int main()
 {
-    IX* pIX = NULL;
-    HRESULT_ result = CreateInstance(CLSID_SERVER, IID_IX, (void**)&pIX);
-    if (result == 0)
+    IClassFactory* pF = NULL;
+    HRESULT_ result = GetClassObject(CLSID_SERVER, IID_ICLASSFACTORY, (void**)&pF);
+    if (result == S_OK)
     {
-        cout << pIX->Func1() << endl;
+        IX* pX = NULL;
+        result = pF->CreateInstance(IID_IX, (void**)&pX);
+        if (result == S_OK)
+        {
+            cout << pX->Func1() << endl;
+        }
+        else cout << "Warning" << endl;
     }
-    else
-    {
-        cout << "Warning" << endl;
-    }
+    else cout << "Warning" << endl;
     system("pause");
     return 0;
 }

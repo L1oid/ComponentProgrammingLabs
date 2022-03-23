@@ -3,27 +3,44 @@
 #include "OBJBASE.h"
 using namespace std;
 
-HRESULT_ CreateInstance(CLSID_ CLS_ID, IID_ I_ID, void** ppv)
+HRESULT_ CreateInstance(CLSID_ CLSID, IID_ IID, void** ppv)
 {
     IUnknown* pIUnknown = NULL;
-    HRESULT_ result;
-    switch (CLS_ID) 
+    switch (CLSID) 
     {
-    case 1:
-        cout << "CreateInstance: Linked Server." << endl;
+    case CLSID_SERVER:
         pIUnknown = (IX*) new Server;
-        result = pIUnknown->QueryInterface(I_ID, ppv);
+        cout << "Global.CreateInstance: Server connected." << endl;
         break;
-    case 2:
-        cout << "CreateInstance: Lined Server2." << endl;
+    case CLSID_SERVER2:
         pIUnknown = (IY*) new Server2;
-        result = pIUnknown->QueryInterface(I_ID, ppv);
+        cout << "Global.CreateInstance: Server2 connected." << endl;
         break;
     default:
-        cout << "CreateInstance: Invalid server. Linked Server1" << endl;
-        pIUnknown = (IX*) new Server;
-        result = pIUnknown->QueryInterface(I_ID, ppv);
+        cout << "Global.CreateInstance: connection error." << endl;
+        return S_FAIL;
         break;
     }
-    return result;
+    return pIUnknown->QueryInterface(IID, ppv);
+}
+
+HRESULT_ GetClassObject(CLSID_ CLSID, IID_ IID, void** ppv)
+{
+    IUnknown* pIUnknown = NULL;
+    switch (CLSID) 
+    {
+    case CLSID_SERVER:
+        pIUnknown = (IClassFactory*) new ServerFactory;
+        cout << "GetClassObject: ServerFactory connected." << endl;
+        break;
+    case CLSID_SERVER2:
+        pIUnknown = (IClassFactory*) new Server2Factory;
+        cout << "GetClassObject: Server2Factory connected." << endl;
+        break;
+    default:
+        cout << "GetClassObject: connection error." << endl;
+        return S_FAIL;
+        break;
+    }
+    return pIUnknown->QueryInterface(IID, ppv);
 }

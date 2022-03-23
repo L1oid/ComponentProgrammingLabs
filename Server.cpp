@@ -3,12 +3,7 @@
 #include "OBJBASE.h"
 using namespace std;
 
-Server::Server()
-{
-    a = 0;
-    b = 0;
-}
-
+Server::Server() {};
 Server::~Server() {};
 
 int Server::Func1()
@@ -25,22 +20,48 @@ HRESULT_ Server::QueryInterface(IID_ IID, void** ppv)
 {
     switch (IID)
     {
-    case 0:
-        cout << "Server.QueryInterface: return IUnknown" << endl;
+    case IID_IUNKNOWN:
         *ppv = (IUnknown*)(IX*)ppv;
+        cout << "Server.QueryInterface: IUnknown connected." << endl;
         break;
-    case 1:
-        cout << "Server.QueryInterface: return IX" << endl;
+    case IID_IX:
         *ppv = (IX*)this;
+        cout << "Server.QueryInterface: IX connected." << endl;
         break;
-    case 2:
-        cout << "Server.QueryInterface: return IY" << endl;
+    case IID_IY:
         *ppv = (IY*)this;
+        cout << "Server.QueryInterface: IY connected." << endl;
         break;
     default:
-        cout << "Server.QueryInterface: Invalid interface" << endl;
         *ppv = NULL;
-        return 1;
+        cout << "Server.QueryInterface: Invalid interface" << endl;
+        return S_FAIL;
     }
-    return 0;
+    return S_OK;
 }
+
+ServerFactory::ServerFactory() {};
+ServerFactory::~ServerFactory() {};
+
+HRESULT_ ServerFactory::CreateInstance(IID_ IID, void** ppv)
+{
+    Server* server = new Server;
+    cout << "Server.CreateInstance: Server connected." << endl;
+    return server->QueryInterface(IID, ppv);
+};
+
+HRESULT_ ServerFactory::QueryInterface(IID_ IID, void** ppv)
+{
+    switch (IID)
+    {
+    case IID_ICLASSFACTORY:
+        cout << "ServerFactory.QueryInterface: IClassFactory connected." << endl;
+        *ppv = (IClassFactory*)this;
+        break;
+    default:
+        cout << "ServerFactory.QueryInterface: Invalid interface" << endl;
+        *ppv = NULL;
+        return S_FAIL;
+    }
+    return S_OK;
+};
