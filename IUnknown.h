@@ -5,6 +5,8 @@ class IUnknown
 {
 public:
     virtual HRESULT_ QueryInterface(IID_, void**) = 0;
+    virtual ULONG_ AddRef() = 0;
+    virtual ULONG_ Release() = 0;
 };
 
 class IX : public IUnknown

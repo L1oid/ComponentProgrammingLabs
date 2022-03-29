@@ -3,8 +3,14 @@
 #include "OBJBASE.h"
 using namespace std;
 
-Server::Server() {};
-Server::~Server() {};
+Server::Server() 
+{
+    m_cRef = 0;
+};
+Server::~Server() 
+{
+    cout << "Server.Destructor: Liquidated." << endl;
+};
 
 int Server::Func1()
 {
@@ -37,16 +43,41 @@ HRESULT_ Server::QueryInterface(IID_ IID, void** ppv)
         cout << "Server.QueryInterface: Invalid interface" << endl;
         return S_FAIL;
     }
+    reinterpret_cast<IUnknown*>(*ppv)->AddRef();
     return S_OK;
 }
 
-ServerFactory::ServerFactory() {};
-ServerFactory::~ServerFactory() {};
+ULONG_ Server::AddRef() 
+{ 
+    cout << "Server.AddRef = " << m_cRef + 1 << endl;
+    return ++m_cRef; 
+} 
+ 
+ULONG_ Server::Release()
+{ 
+    cout << "Server.Release = " << m_cRef - 1 << endl;
+    if(--m_cRef == 0)
+    {
+        delete this;
+        return 0;
+    }
+    return m_cRef;
+}
+
+ServerFactory::ServerFactory() 
+{
+    m_cRef = 0;
+};
+ServerFactory::~ServerFactory() 
+{
+    cout << "ServerFactory.Destructor: Liquidated." << endl;
+};
 
 HRESULT_ ServerFactory::CreateInstance(IID_ IID, void** ppv)
 {
     Server* server = new Server;
     cout << "Server.CreateInstance: Server connected." << endl;
+    server->AddRef();
     return server->QueryInterface(IID, ppv);
 };
 
@@ -63,5 +94,23 @@ HRESULT_ ServerFactory::QueryInterface(IID_ IID, void** ppv)
         *ppv = NULL;
         return S_FAIL;
     }
+    reinterpret_cast<IUnknown*>(*ppv)->AddRef();
     return S_OK;
 };
+
+ULONG_ ServerFactory::AddRef() 
+{ 
+    cout << "ServerFactory.AddRef = " << m_cRef + 1 << endl;
+    return ++m_cRef; 
+} 
+ 
+ULONG_ ServerFactory::Release() 
+{ 
+    cout << "ServerFactory.Release = " << m_cRef - 1 << endl;
+    if(--m_cRef == 0)
+    {
+        delete this;
+        return 0;
+    }
+    return m_cRef;
+}

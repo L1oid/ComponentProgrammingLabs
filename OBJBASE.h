@@ -4,6 +4,7 @@
 #define CLSID_ int
 #define IID_ int
 #define HRESULT_ int
+#define ULONG_ int
 
 const int IID_IUNKNOWN = 0;
 const int IID_IX = 1;

@@ -3,8 +3,14 @@
 #include "OBJBASE.h"
 using namespace std;
 
-Server2::Server2() {};
-Server2::~Server2() {};
+Server2::Server2() 
+{
+    m_cRef = 0;
+};
+Server2::~Server2() 
+{
+    cout << "Server2.Destructor: Liquidated." << endl;
+};
 
 int Server2::Func2()
 {
@@ -31,8 +37,32 @@ HRESULT_ Server2::QueryInterface(IID_ IID, void** ppv)
     return S_OK;
 }
 
-Server2Factory::Server2Factory() {};
-Server2Factory::~Server2Factory() {};
+ULONG_ Server2::AddRef() 
+{
+    cout << "Server2.AddRef = " << m_cRef + 1 << endl;
+    return ++m_cRef; 
+} 
+ 
+ULONG_ Server2::Release() 
+{ 
+    cout << "Server2.Release = " << m_cRef - 1 << endl;
+    if(--m_cRef == 0)
+    {
+        delete this;
+        return 0;
+    }
+    return m_cRef;
+}
+
+
+Server2Factory::Server2Factory() 
+{
+    m_cRef = 0;
+};
+Server2Factory::~Server2Factory() 
+{
+    cout << "Server2Factory.Destructor: Liquidated." << endl;
+};
 
 HRESULT_ Server2Factory::CreateInstance(IID_ IID, void** ppv)
 {
@@ -55,4 +85,21 @@ HRESULT_ Server2Factory::QueryInterface(IID_ IID, void** ppv)
         return S_FAIL;
     }
     return S_OK;
+}
+
+ULONG_ Server2Factory::AddRef() 
+{ 
+    cout << "Server2Factory.AddRef = " << m_cRef + 1 << endl;
+    return ++m_cRef; 
+} 
+ 
+ULONG_ Server2Factory::Release() 
+{ 
+    cout << "Server2Factory.Release = " << m_cRef - 1 << endl;
+    if(--m_cRef == 0)
+    {
+        delete this;
+        return 0;
+    }
+    return m_cRef;
 }

@@ -21,6 +21,7 @@ HRESULT_ CreateInstance(CLSID_ CLSID, IID_ IID, void** ppv)
         return S_FAIL;
         break;
     }
+    pIUnknown->AddRef();
     return pIUnknown->QueryInterface(IID, ppv);
 }
 
@@ -42,5 +43,6 @@ HRESULT_ GetClassObject(CLSID_ CLSID, IID_ IID, void** ppv)
         return S_FAIL;
         break;
     }
+    pIUnknown->AddRef();
     return pIUnknown->QueryInterface(IID, ppv);
 }
