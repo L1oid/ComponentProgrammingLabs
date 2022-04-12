@@ -7,14 +7,28 @@ Server2::Server2()
 {
     m_cRef = 0;
 };
+Server2::Server2(int a_p, int b_p) 
+{
+    a = a_p;
+    b = b_p;
+};
 Server2::~Server2() 
 {
     cout << "Server2.Destructor: Liquidated." << endl;
 };
 
-int Server2::Func2()
+int Server2::Nod()
 {
-    return 22;
+    result = 0;
+	for (int i = a; i > 0; i--)
+	{
+		if (a % i == 0 && b % i == 0)
+		{
+			result = i;
+			break;
+		}
+	}
+	return result;
 }
 
 HRESULT_ Server2::QueryInterface(IID_ IID, void** ppv)
@@ -67,6 +81,13 @@ Server2Factory::~Server2Factory()
 HRESULT_ Server2Factory::CreateInstance(IID_ IID, void** ppv)
 {
     Server2* server2 = new Server2;
+    cout << "Server2.CreateInstance: Server2 connected." << endl;
+    return server2->QueryInterface(IID, ppv);
+};
+
+HRESULT_ Server2Factory::CreateInstance2(IID_ IID, void** ppv, int num1, int num2)
+{
+    Server2* server2 = new Server2(num1, num2);
     cout << "Server2.CreateInstance: Server2 connected." << endl;
     return server2->QueryInterface(IID, ppv);
 };

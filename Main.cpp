@@ -3,33 +3,61 @@
 #include "OBJBASE.h"
 using namespace std;
 
+/*
+class ServerDecorator
+{
+    private:
+        IX* pX = NULL;
+        IY* pY = NULL;
+        IClassFactory* pF = NULL;
+        HRESULT_ result;
+    public:
+        ServerDecorator(CLSID_ CLSID, IID_ IID)
+        {
+            result = GetClassObject(CLSID, IID, (void**)&pF);
+        }
+        ServerDecorator(ServerDecorator& )
+        {
+
+        }
+        ~ServerDecorator()
+        {
+            pX=
+        }
+        void Func1()
+        {
+            pX->Func1();
+        }
+        void Func2()
+        {
+            pY->Func2();
+        }
+};
+*/
 int main()
 {
     IClassFactory* pF = NULL;
     HRESULT_ result = GetClassObject(CLSID_SERVER, IID_ICLASSFACTORY, (void**)&pF);
-    pF->Release();
     if (result == S_OK)
     {
-        IX* pX = NULL;
-        result = pF->CreateInstance(IID_IX, (void**)&pX);
-        pF->Release();
-        if (result == S_OK)
-        {
-            cout << "Func result: " << pX->Func1() << endl;
-            pX->Release();
-        }
-        else cout << "Warning" << endl;
         IY* pY = NULL;
-        result = pX->QueryInterface(IID_IY, (void**)&pY);
+        result = pF->CreateInstance2(IID_IY, (void**)&pY, 3, 6);
         if (result == S_OK)
         {
-            cout << "Func result: " << pY->Func2() << endl;
-            pX->Release();
+            cout << "NOD: " << pY->Nod() << endl;
         }
         else cout << "Warning" << endl;
-        pX->Release();
+        result = pY->QueryInterface(IID_IX, (void**)&pY);
+        if (result == S_OK)
+        {
+            cout << "NOK: " << pY->Nod() << endl;
+            pY->Release();
+        }
+        else cout << "Warning" << endl;
+        pY->Release();
     }
     else cout << "Warning" << endl;
+    pF->Release();
     system("pause");
     return 0;
 }

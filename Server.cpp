@@ -7,19 +7,34 @@ Server::Server()
 {
     m_cRef = 0;
 };
+Server::Server(int a_p, int b_p) 
+{
+    a = a_p;
+    b = b_p;
+};
 Server::~Server() 
 {
     cout << "Server.Destructor: Liquidated." << endl;
 };
 
-int Server::Func1()
+int Server::Nok()
 {
-    return 11;
+    result = (a * b) / Nod();
+	return result;
 }
 
-int Server::Func2()
+int Server::Nod()
 {
-    return 12;
+    result = 0;
+	for (int i = a; i > 0; i--)
+	{
+		if (a % i == 0 && b % i == 0)
+		{
+			result = i;
+			break;
+		}
+	}
+	return result;
 }
 
 HRESULT_ Server::QueryInterface(IID_ IID, void** ppv) 
@@ -77,7 +92,13 @@ HRESULT_ ServerFactory::CreateInstance(IID_ IID, void** ppv)
 {
     Server* server = new Server;
     cout << "Server.CreateInstance: Server connected." << endl;
-    server->AddRef();
+    return server->QueryInterface(IID, ppv);
+};
+
+HRESULT_ ServerFactory::CreateInstance2(IID_ IID, void** ppv, int num1, int num2)
+{
+    Server* server = new Server(num1, num2);
+    cout << "Server.CreateInstance: Server connected." << endl;
     return server->QueryInterface(IID, ppv);
 };
 

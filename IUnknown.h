@@ -12,18 +12,19 @@ public:
 class IX : public IUnknown
 {
 public:
-    virtual int Func1() = 0;
+    virtual int Nok() = 0;
 };
 
 class IY : public IUnknown
 {
 public:
-    virtual int Func2() = 0;
+    virtual int Nod() = 0;
 };
 
 class IClassFactory : public IUnknown
 {
 public:
     virtual HRESULT_ CreateInstance(IID_, void**) = 0;
+    virtual HRESULT_ CreateInstance2(IID_, void**, int, int) = 0;
 };
 #endif
