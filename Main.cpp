@@ -3,37 +3,6 @@
 #include "OBJBASE.h"
 using namespace std;
 
-/*
-class ServerDecorator
-{
-    private:
-        IX* pX = NULL;
-        IY* pY = NULL;
-        IClassFactory* pF = NULL;
-        HRESULT_ result;
-    public:
-        ServerDecorator(CLSID_ CLSID, IID_ IID)
-        {
-            result = GetClassObject(CLSID, IID, (void**)&pF);
-        }
-        ServerDecorator(ServerDecorator& )
-        {
-
-        }
-        ~ServerDecorator()
-        {
-            pX=
-        }
-        void Func1()
-        {
-            pX->Func1();
-        }
-        void Func2()
-        {
-            pY->Func2();
-        }
-};
-*/
 int main()
 {
     IClassFactory* pF = NULL;
