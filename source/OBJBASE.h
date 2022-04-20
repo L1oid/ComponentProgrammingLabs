@@ -15,7 +15,7 @@ const int IID_ICLASSFACTORY2 = 2;
 const int CLSID_SERVER = 1;
 const int CLSID_SERVER2 = 2;
 
-const int S_OK = 0;
+const int S_OK_ = 0;
 const int S_FAIL = 1;
 
 #endif

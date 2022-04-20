@@ -59,7 +59,7 @@ HRESULT_ Server::QueryInterface(IID_ IID, void** ppv)
         return S_FAIL;
     }
     reinterpret_cast<IUnknown*>(*ppv)->AddRef();
-    return S_OK;
+    return S_OK_;
 }
 
 ULONG_ Server::AddRef() 
@@ -120,7 +120,7 @@ HRESULT_ ServerFactory::QueryInterface(IID_ IID, void** ppv)
         return S_FAIL;
     }
     reinterpret_cast<IUnknown*>(*ppv)->AddRef();
-    return S_OK;
+    return S_OK_;
 };
 
 ULONG_ ServerFactory::AddRef() 

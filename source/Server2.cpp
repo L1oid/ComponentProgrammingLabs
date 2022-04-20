@@ -48,7 +48,7 @@ HRESULT_ Server2::QueryInterface(IID_ IID, void** ppv)
         cout << "Server2.QueryInterface: Invalid interface" << endl;
         return S_FAIL;
     }
-    return S_OK;
+    return S_OK_;
 }
 
 ULONG_ Server2::AddRef() 
@@ -109,7 +109,7 @@ HRESULT_ Server2Factory::QueryInterface(IID_ IID, void** ppv)
         *ppv = NULL;
         return S_FAIL;
     }
-    return S_OK;
+    return S_OK_;
 }
 
 ULONG_ Server2Factory::AddRef() 
